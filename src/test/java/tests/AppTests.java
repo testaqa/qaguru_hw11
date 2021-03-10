@@ -1,5 +1,6 @@
 package tests;
 
+import config.ConfigHelper;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -11,8 +12,8 @@ public class AppTests extends BaseTest{
     @Test
     void UserLogin() {
         homePage.loginLink.click();
-        homePage.emailField.setValue(config.username());
-        homePage.passwordField.setValue(config.password());
+        homePage.emailField.setValue(ConfigHelper.getAppUsername());
+        homePage.passwordField.setValue(ConfigHelper.getAppPassword());
         homePage.submitLoginButton.click();
 
         homePage.logoutLink.shouldBe(visible, Duration.ofSeconds(30));
