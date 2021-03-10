@@ -1,19 +1,33 @@
 package tests;
 
-import config.AuthConfig;
-import org.aeonbits.owner.ConfigFactory;
+import com.codeborne.selenide.Configuration;
+import config.ConfigHelper;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.HomePage;
 
 import static com.codeborne.selenide.Selenide.open;
 
 public class BaseTest {
-    AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
+
     HomePage homePage = new HomePage();
 
     @BeforeAll
     public static void BeforeAll(){
-        open("https://godzila.bg/en/");
+        Configuration.baseUrl = ConfigHelper.getWebUrl();
+        Configuration.browser = System.getProperty("browser", "chrome");
+var test = ConfigHelper.isRemoteWebDriver();
+
+        if (ConfigHelper.isRemoteWebDriver()) {
+            Configuration.remote = ConfigHelper.getWebRemoteDriver();
+
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            Configuration.browserCapabilities = capabilities;
+        }
+
+        open("");
         HomePage homePage = new HomePage();
         homePage.citySelection.first().click();
     }
