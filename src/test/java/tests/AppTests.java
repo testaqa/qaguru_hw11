@@ -5,20 +5,21 @@ import org.junit.jupiter.api.Test;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 
-public class AppTests {
+public class AppTests extends BaseTest{
 
     @Test
     void UserLogin() {
-        open("https://godzila.bg/en/");
-        $(".popup-btn-city").click();
-        $(byText("login")).click();
-        $("#login-email").setValue("testaqa@protonmail.com");
-        $("input[name=password]").setValue("testaqa1");
-        $(".popup.show button.popup-btn-login").click();
+        homePage.loginLink.click();
+        homePage.emailField.setValue("testaqa@protonmail.com");
+        homePage.passwordField.setValue("testaqa1");
+        homePage.submitLoginButton.click();
 
-        $(byText("logout")).shouldBe(visible, Duration.ofSeconds(30));
+        homePage.logoutLink.shouldBe(visible, Duration.ofSeconds(30));
+    }
+
+    @Test
+    void MenuSectionsPresented() {
+        homePage.menuSections.shouldHaveSize(6);
     }
 }
