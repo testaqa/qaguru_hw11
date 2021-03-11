@@ -15,4 +15,5 @@ public class HomePage {
     public SelenideElement submitLoginButton = $(".popup.show button.popup-btn-login");
     public SelenideElement logoutLink = $(byText("logout"));
     public ElementsCollection menuSections = $$(".mainmenu-list li");
+    public SelenideElement searchField = $("#searchbar-input");
 }
