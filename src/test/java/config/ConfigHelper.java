@@ -4,12 +4,9 @@ import org.aeonbits.owner.ConfigFactory;
 
 public class ConfigHelper {
     public static String getWebRemoteDriver() {
-        return "https://"
-                + getWebConfig().webRemoteDriverUser()
-                + ":"
-                + getWebConfig().webRemoteDriverPassword()
-                + "@"
-                + System.getProperty("web.remote.driver");
+        // Parameter to pass: https://%s:%s@selenoid.autotests.cloud/wd/hub/
+        return String.format(System.getProperty("web.remote.driver"),
+                getWebConfig().webRemoteDriverUser(), getWebConfig().webRemoteDriverPassword());
     }
 
     public static boolean isRemoteWebDriver() {
