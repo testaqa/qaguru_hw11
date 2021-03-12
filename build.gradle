@@ -37,15 +37,17 @@ allure {
     }
 }
 
+tasks.withType(Test) {
+    systemProperties += System.properties
+}
+
 test {
     useJUnitPlatform()
-    systemProperties(System.getProperties())
 }
 
 task web(type: Test) {
     useJUnitPlatform {
         includeTags 'web'
     }
-    systemProperties(System.getProperties())
     systemProperty 'platform', 'web'
 }
