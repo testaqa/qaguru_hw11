@@ -6,6 +6,7 @@ import helpers.DriverHelper;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import pages.HomePage;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -20,10 +21,15 @@ public class BaseTest {
         SelenideLogger.addListener("allure", new AllureSelenide().screenshots(true).savePageSource(true));
 
         DriverHelper.configureDriver();
+    }
 
+    @BeforeEach
+    public void BeforeEach() {
         open("");
         HomePage homePage = new HomePage();
-        homePage.citySelection.first().click();
+        if (homePage.citySelection.size() > 0) {
+            homePage.citySelection.first().click();
+        }
     }
 
     @AfterEach
