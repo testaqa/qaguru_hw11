@@ -1,9 +1,11 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -23,8 +25,8 @@ public class HomePage {
         menuSections.shouldHaveSize(itemCount);
     }
 
-    @Step("Is search field exists")
-    public boolean IsSearchFieldExists(){
-        return searchField.exists();
+    @Step("Verify search field exists")
+    public void VerifySearchFieldExists(){
+        searchField.should(exist);
     }
 }

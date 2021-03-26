@@ -52,7 +52,7 @@ public class AppTests extends BaseTest{
     @Tag("web")
     @DisplayName("Verify steps in PageObject")
     void StepsInPage() {
-        homePage.IsSearchFieldExists();
+        homePage.VerifySearchFieldExists();
         homePage.VerifyMenuSectionsCount(6);
     }
 }
