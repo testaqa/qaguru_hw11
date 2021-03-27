@@ -6,7 +6,9 @@ import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 public interface AuthConfig extends Config {
 
+    @Key("username")
     String username();
 
+    @Key("password")
     String password();
 }
